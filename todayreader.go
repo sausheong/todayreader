@@ -3,7 +3,7 @@ package main
 import (
   "net/http"
   "io/ioutil"
-  "fmt"
+  // "fmt"
   "log"  
   "encoding/base64"
   "html/template"
