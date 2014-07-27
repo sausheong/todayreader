@@ -65,7 +65,7 @@ func main() {
   r.ServeFiles("/css/*filepath", http.Dir("public/css"))
   r.ServeFiles("/fonts/*filepath", http.Dir("public/fonts"))
   r.ServeFiles("/js/*filepath", http.Dir("public/js"))
-  http.ListenAndServe("0.0.0.0:9292", r)
+  http.ListenAndServe("0.0.0.0:40947", r)
 }
 
 // extract pages from the source
