@@ -65,7 +65,15 @@ func main() {
   r.ServeFiles("/css/*filepath", http.Dir("public/css"))
   r.ServeFiles("/fonts/*filepath", http.Dir("public/fonts"))
   r.ServeFiles("/js/*filepath", http.Dir("public/js"))
-  http.ListenAndServe("0.0.0.0:40947", r)
+  server := &http.Server{
+  	Addr:           "0.0.0.0:40947",
+  	Handler:        r,
+  	ReadTimeout:    10 * time.Second,
+  	WriteTimeout:   600 * time.Second,
+  	MaxHeaderBytes: 1 << 20,
+  }
+  server.ListenAndServe()
+  // http.ListenAndServe("0.0.0.0:40947", r)
 }
 
 // extract pages from the source
