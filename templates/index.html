@@ -30,9 +30,16 @@
             <a class='navbar-brand' href='/'>
               <i class="fa fa-search">
                 TodayReader
+                <small>(read faster)</small>
               </i>
-            </a>
+            </a>            
           </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#" data-toggle="modal" data-target="#about">About</a></li>
+            </ul>
+          </div>
+          
         </div>
       </div>
       <div class='content'>
@@ -56,8 +63,27 @@
     </div>
     <br>
     <footer>
-      <p class='footer'>&copy; Chang Sau Sheong 2014</p>
+      <p class='footer'>&copy; <a href="https://github.com/sausheong">Chang Sau Sheong</a> 2014</p>
     </footer>
+    <div class="modal fade" id="about">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">About TodayReader</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+            TodayReader is an alternative reader for the print edition of Today Online. It allows a simpler interface for you to read faster on multiple devices.
+            This web application is open source -- you can find the code in <a href="https://github.com/sausheong/todayreader">GitHub</a>.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>    
   </body>
 </html>
 <style>
