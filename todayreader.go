@@ -137,7 +137,7 @@ func isValidPage(url string) (validity bool) {
 // for route '/'
 func index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
   if paper.ShouldRefresh() {
-    refresh()
+    go refresh()
   }
   
   t, err := template.ParseFiles("templates/index.html")
