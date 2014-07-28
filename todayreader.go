@@ -5,7 +5,7 @@ import (
   "io/ioutil"
   // "fmt"
   "log"  
-  "encoding/base64"
+  // "encoding/base64"
   "html/template"
   "strconv"
   "time"
@@ -24,14 +24,14 @@ type Paper struct {
   NumOfPages    int
   DateRefreshed time.Time
   Pages         [][]byte
-  Previews      []string
+  Previews      [][]byte
 }
 
 func (paper *Paper) AddPage(pg []byte) {
   paper.Pages = append(paper.Pages, pg) 
 }
 
-func (paper *Paper) AddPreview(pre string) {
+func (paper *Paper) AddPreview(pre []byte) {
   paper.Previews = append(paper.Previews, pre) 
 }
 
@@ -61,6 +61,7 @@ func main() {
   r.GET("/", index)
   r.GET("/page/:num", page)
   r.GET("/pdf/:num", pdf)
+  r.GET("/image/:num", image)
   
   r.ServeFiles("/css/*filepath", http.Dir("public/css"))
   r.ServeFiles("/fonts/*filepath", http.Dir("public/fonts"))
@@ -95,7 +96,7 @@ func refresh() {
       paper.NumOfPages = paper.NumOfPages + 1
       // extract pages for preview
       preview := extract(url)
-      paper.AddPreview(base64.StdEncoding.EncodeToString(preview))     
+      paper.AddPreview(preview)
       
       // extract pages
       pdf_url := "http://www.todayonline.com/sites/default/files/" + 
@@ -177,6 +178,14 @@ func pdf(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
   num, _ := strconv.Atoi(page_num)
   w.Header().Set("Content-Type", "application/pdf")
   w.Write(paper.Pages[num])  
+}
+
+// for route '/pdf/:num'
+func image(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+  page_num := ps.ByName("num")
+  num, _ := strconv.Atoi(page_num)
+  w.Header().Set("Content-Type", "image/jpg")
+  w.Write(paper.Previews[num])  
 }
 
 // Preview
