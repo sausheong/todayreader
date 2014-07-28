@@ -108,6 +108,8 @@ func refresh() {
       break
     }
   }
+  println(paper.NumOfPages)
+  println(len(paper.Previews))
 }
 
 // extract from the URL
@@ -180,7 +182,7 @@ func pdf(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
   w.Write(paper.Pages[num])  
 }
 
-// for route '/pdf/:num'
+// for route '/image/:num'
 func image(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
   page_num := ps.ByName("num")
   num, _ := strconv.Atoi(page_num)
