@@ -108,8 +108,6 @@ func refresh() {
       break
     }
   }
-  println(paper.NumOfPages)
-  println(len(paper.Previews))
 }
 
 // extract from the URL
